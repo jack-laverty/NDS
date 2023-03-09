@@ -1,17 +1,16 @@
-
-import arinc424.record as a424
+from arinc424 import record
 from pymongo import MongoClient, InsertOne
 import json
+import os
 
 if __name__ == '__main__':
     client = MongoClient('mongodb://192.168.20.3:27017/')
     records = []
-    with open('./input/airport') as f:
-        for line in f.readlines():
-            r = a424.Record()
-            if r.validate(line):
+    for filename in os.listdir('./input'):
+        with open(os.path.join('./input', filename), 'r') as f:
+            for line in f.readlines():
+                r = record.Record()
                 if r.read(line):
-                    print(type(json.loads(r.json())))
                     records.append(InsertOne(json.loads(r.json())))
-    print('db write:', client.database.collection.bulk_write(records))
+    print(client.nav_data.dev.bulk_write(records))
     client.close()
