@@ -4,7 +4,7 @@ NDS imports ARINC-424 records from text files into a mongoDB database
 ## Getting Started
 
 * install the following python packages
-  * [pymongo](https://link-url-here.org)
+  * [pymongo](https://pypi.org/project/pymongo/)
   * [arinc424](https://github.com/jack-laverty/arinc424)
 * install MongoDB and create a MongoDB database, refer to https://www.mongodb.com/docs/
 
